@@ -13,16 +13,20 @@
 	//Verificar la llamada POST
 	if (isset($_POST) AND isset($_POST['create'])) {
 
+		//print_r($_POST);
 
-		$data = [
+		$data_usuario = [
 			'nombre_completo' => $_POST['nombre_completo'],
 			'correo' => $_POST['correo'],
 			'contrasena' => $_POST['contrasena'],
 			'telefono' => $_POST['telefono'],
 		];
 
+
+		//print_r($data_usuario);
+
 		$statement = $dbmanager->prepare("INSERT INTO usuarios (nombre_completo, correo, contrasena,telefono) VALUES (:nombre_completo, :correo, :contrasena, :telefono)");
-		$statement->execute($data);
+		$statement->execute($data_usuario);
 
 		$mensaje =  "<div class='alert alert-success'>El usuario ha sido creado con éxito</div>";
 	}
